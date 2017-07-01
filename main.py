@@ -1,8 +1,11 @@
 from flask import Flask, render_template, request, json
+from flask_cors import CORS, cross_origin
+
 import requests, bs4, os
 
 app = Flask(__name__)
-
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 """
 route('/') renders index.html, which shows nothing but how to use this app
 """
@@ -20,6 +23,7 @@ If the there is GET['url'], the app will try to get the page, if it fails, it wi
 send a json with an error message to check the URL or with the status code.
 """
 @app.route("/get_title", methods=['GET'])
+@cross_origin()
 def get():
     if request.args.get('url') is None:
         return render_template('index.html')
