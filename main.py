@@ -3,10 +3,22 @@ import requests, bs4, os
 
 app = Flask(__name__)
 
+"""
+route('/') renders index.html, which shows nothing but how to use this app
+"""
 @app.route("/", methods=['GET'])
 def hello():
     return render_template('index.html')
 
+"""
+route('get_title') cares about 1 GET argument, GET['url']. As of now, there is
+no encoding whatsoever performed on the argument.
+
+If the page does not see GET['url'], it redirects to index.html.
+
+If the there is GET['url'], the app will try to get the page, if it fails, it will
+send a json with an error message to check the URL or with the status code.
+"""
 @app.route("/get_title", methods=['GET'])
 def get():
     if request.args.get('url') is None:
@@ -16,7 +28,12 @@ def get():
         z = dict()
         z['url'] = url
 
-        r = requests.get(url)
+        try:
+            r = requests.get(url)
+        except:
+            z['message'] = 'Check URL'
+            return json.jsonify(z)
+
         if r.status_code != 200:
             z['return_code'] = r.status_code
         else:

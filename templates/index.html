@@ -1,9 +1,24 @@
 <html>
 <head>
-<title>Get title of any page</title>
+<title>عناوين الصفحات</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
-<body>
-GET /get_title?url=LINK </br>
-The site does not do any kind of encoding on <bold>LINK</bold>, you need to do the processing from yourside.
+<body dir='rtl'>
+<div class='container'>
+<h1>عناوين الصفحات</h1>
+
+<script src="https://gist.github.com/cenrak/3293af215dfe13553c9e3f5e7cc1aa8e.js"></script>
+
+<h2>طريقة الإستخدام</h2>
+أرسل طلب من نوع <strong>GET</strong> للصفحة <strong>/get_title</strong> مع متغير <strong>url</strong> برابط الصفحة المراد ايجاد عنوانها.
+</br>
+
+<p class="bg-danger">
+الموقع لا يقوم بأي نوع من المعالجة للمتغير <strong>url</strong>
+مسؤوليتك إعداد المتغير بشكل كامل، كتشفير علامات ؟ و غيرها
+</p>
+
+<p class='text-center'>By <a href="https://twitter.com/cenrak">cenrak @twitter</a></p>
+</div>
 </body>
 </html>
